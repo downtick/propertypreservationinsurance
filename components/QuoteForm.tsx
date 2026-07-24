@@ -26,26 +26,13 @@ function digits(raw: string, max: number): string {
 
 type Vals = Record<string, string | boolean>;
 
-function ToggleSlider({
+function YesNoButtons({
   id, value, onSet, labelledBy,
 }: { id: string; value?: string; onSet: (v: "Yes" | "No") => void; labelledBy?: string }) {
-  const on = value === "Yes";
-  const unset = value !== "Yes" && value !== "No";
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-      <span style={{ fontSize: "0.85rem", color: value === "No" ? "#3c4a2a" : "#8b9280", fontWeight: 600 }}>No</span>
-      <button
-        type="button"
-        id={id}
-        role="switch"
-        aria-checked={on}
-        aria-labelledby={labelledBy}
-        className="toggle-track"
-        data-on={on}
-        data-state={unset ? "unset" : "set"}
-        onClick={() => onSet(on ? "No" : "Yes")}
-      />
-      <span style={{ fontSize: "0.85rem", color: on ? "#3c4a2a" : "#8b9280", fontWeight: 600 }}>Yes</span>
+    <div id={id} role="group" aria-labelledby={labelledBy} style={{ display: "flex", gap: "0.5rem" }}>
+      <button type="button" className="yn-btn" data-on={value === "No"} aria-pressed={value === "No"} onClick={() => onSet("No")}>No</button>
+      <button type="button" className="yn-btn" data-on={value === "Yes"} aria-pressed={value === "Yes"} onClick={() => onSet("Yes")}>Yes</button>
     </div>
   );
 }
@@ -56,7 +43,7 @@ const sectionLegend: React.CSSProperties = {
 
 export default function QuoteForm() {
   const router = useRouter();
-  const [v, setV] = useState<Vals>({});
+  const [v, setV] = useState<Vals>({ numOwners: "1" });
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -138,7 +125,7 @@ export default function QuoteForm() {
           {label}{req}
           {hint && <span style={{ display: "block", fontWeight: 400, fontSize: "0.82rem", color: "#7b8271" }}>{hint}</span>}
         </span>
-        <ToggleSlider id={name} value={String(v[name] || "")} labelledBy={`lbl-${name}`} onSet={(val) => set(name, val)} />
+        <YesNoButtons id={name} value={String(v[name] || "")} labelledBy={`lbl-${name}`} onSet={(val) => set(name, val)} />
       </div>
     );
   }
@@ -153,6 +140,31 @@ export default function QuoteForm() {
           <div style={{ fontSize: "0.85rem", color: "#7b8271" }}>{desc}</div>
         </div>
         <span style={{ width: 24, height: 24, borderRadius: 7, border: on ? "none" : "2px solid #c9c3ac", background: on ? "#55663d" : "#fff", color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 15, flexShrink: 0 }}>{on ? "✓" : ""}</span>
+      </div>
+    );
+  }
+
+  function NumberBoxes({ name, label, options, hint }: { name: string; label: string; options: number[]; hint?: string }) {
+    const value = Number(v[name] || options[0]);
+    return (
+      <div>
+        <label className="form-label" id={`lbl-${name}`}>{label}</label>
+        <div role="group" aria-labelledby={`lbl-${name}`} style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          {options.map((n) => (
+            <button
+              key={n}
+              type="button"
+              className="num-box"
+              data-on={value === n}
+              aria-pressed={value === n}
+              onClick={() => set(name, String(n))}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
+        {hint && <p style={{ fontSize: "0.78rem", color: "#7b8271", marginTop: 4 }}>{hint}</p>}
+        {err(name) && <p className="form-error">⚠ {err(name)}</p>}
       </div>
     );
   }
@@ -312,7 +324,7 @@ export default function QuoteForm() {
           </div>
         </div>
         <div style={{ marginTop: "1.1rem" }}>
-          <Slider name="numOwners" label="Number of owners active in the business" min={1} max={10} />
+          <NumberBoxes name="numOwners" label="Number of owners active in the business" options={[1, 2, 3, 4, 5]} />
         </div>
       </fieldset>
 
