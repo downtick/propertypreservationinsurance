@@ -169,16 +169,17 @@ export default function QuoteForm() {
     );
   }
 
-  function Slider({ name, label, min, max, hint }: { name: string; label: string; min: number; max: number; hint?: string }) {
-    const value = Number(v[name] || min);
+  function NumberSelect({ name, label, max, hint }: { name: string; label: string; max: number; hint?: string }) {
     return (
       <div>
-        <label className="form-label" htmlFor={name}>
-          {label} <span style={{ color: "#55663d", fontWeight: 700 }}>{value}</span>
-        </label>
-        <input id={name} type="range" min={min} max={max} step={1} style={{ width: "100%", accentColor: "#55663d" }}
-          value={value} onChange={(e) => set(name, e.target.value)} />
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#7b8271" }}><span>{min}</span><span>{max}</span></div>
+        <label className="form-label" htmlFor={name}>{label}{req}</label>
+        <select id={name} className="form-input" value={String(v[name] || "")}
+          onChange={(e) => set(name, e.target.value)} style={{ borderColor: err(name) ? "#b3401d" : undefined }}>
+          <option value="">Select…</option>
+          {Array.from({ length: max }, (_, i) => i + 1).map((n) => (
+            <option key={n} value={n}>{n === max ? `${n}+` : n}</option>
+          ))}
+        </select>
         {hint && <p style={{ fontSize: "0.78rem", color: "#7b8271", marginTop: 4 }}>{hint}</p>}
         {err(name) && <p className="form-error">⚠ {err(name)}</p>}
       </div>
@@ -336,7 +337,7 @@ export default function QuoteForm() {
         </div>
         {employeesYes && (
           <div style={{ marginTop: "1rem", background: "#f5f7ef", borderRadius: "0.55rem", padding: "1rem 1.1rem" }}>
-            <Slider name="numEmployees" label="Number of employees" min={1} max={50} />
+            <NumberSelect name="numEmployees" label="Number of employees" max={50} />
           </div>
         )}
       </fieldset>
@@ -349,7 +350,7 @@ export default function QuoteForm() {
         </div>
         {subsYes && (
           <div style={{ marginTop: "1rem", background: "#f5f7ef", borderRadius: "0.55rem", padding: "1rem 1.1rem", display: "grid", gap: "1rem" }}>
-            <Slider name="numSubcontractors" label="Number of 1099 subcontractors" min={1} max={50} />
+            <NumberSelect name="numSubcontractors" label="Number of 1099 subcontractors" max={50} />
             <div>
               <label className="form-label" htmlFor="subcontractorAnnualPay">Amount paid annually to subcontractors{req}</label>
               <div style={{ position: "relative" }}>
