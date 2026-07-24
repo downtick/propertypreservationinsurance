@@ -72,7 +72,7 @@ export default function Footer() {
 
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1.5rem", display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "space-between", alignItems: "center" }}>
           <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: 0 }}>
-            © {year} propertypreservationistinsurance.com — Not an insurance agency. This site connects
+            © {year} propertypreservationinsurance.com — Not an insurance agency. This site connects
             property preservationists and mortgage field inspectors with insurance professionals.
           </p>
           <div style={{ display: "flex", gap: "1.5rem" }}>

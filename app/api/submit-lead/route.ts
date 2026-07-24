@@ -7,8 +7,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const ALLOWED_ORIGINS = [
-  "https://propertypreservationistinsurance.com",
-  "https://www.propertypreservationistinsurance.com",
+  "https://propertypreservationinsurance.com",
+  "https://www.propertypreservationinsurance.com",
 ];
 
 const BLOCKED_COUNTRIES = new Set(["CN", "RU", "KP"]);

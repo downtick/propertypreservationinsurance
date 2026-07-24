@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Cyber Liability Insurance for Property Preservation",
   description:
     "Cyber liability covers the data exposure that comes with digital work orders, property photos, and inspection reports for property preservationists and mortgage field inspectors.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/cyber-liability-insurance/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/cyber-liability-insurance/" },
 };
 
 export default function Page() {

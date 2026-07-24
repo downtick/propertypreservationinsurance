@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "General Liability Insurance for Property Preservation",
   description:
     "General liability is the foundation of coverage for property preservationists and field inspectors — third-party bodily injury and property damage on vacant and bank-owned properties. Quotes available.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/general-liability-insurance/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/general-liability-insurance/" },
 };
 
 export default function Page() {

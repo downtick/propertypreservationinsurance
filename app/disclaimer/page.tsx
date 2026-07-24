@@ -6,8 +6,8 @@ import AccessibilityToggle from "@/components/AccessibilityToggle";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
-  description: "General information disclaimer for propertypreservationistinsurance.com — the Content on this site is educational only and does not constitute insurance, legal, or financial advice.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/disclaimer/" },
+  description: "General information disclaimer for propertypreservationinsurance.com — the Content on this site is educational only and does not constitute insurance, legal, or financial advice.",
+  alternates: { canonical: "https://propertypreservationinsurance.com/disclaimer/" },
 };
 
 export default function DisclaimerPage() {

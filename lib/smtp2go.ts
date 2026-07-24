@@ -1,4 +1,4 @@
-// SMTP2GO delivery for propertypreservationistinsurance.com.
+// SMTP2GO delivery for propertypreservationinsurance.com.
 // Every lead / contact submission is emailed to leads@runquotes.com from
 // propertypreservation@runquotes.com (a verified SMTP2GO sender).
 const SMTP2GO_API_URL = "https://api.smtp2go.com/v3/email/send";
@@ -46,7 +46,7 @@ function buildTextBody(data: LeadEmailData): string {
   const body = rows(data)
     .map(([k, v]) => `  ${k}: ${typeof v === "boolean" ? (v ? "Yes" : "No") : v}`)
     .join("\n");
-  return `Lead Source: propertypreservationistinsurance.com
+  return `Lead Source: propertypreservationinsurance.com
 Lead Type: ${data.leadType}
 Submitted: ${now}
 
@@ -55,7 +55,7 @@ Submitted: ${now}
 ${body}
 
 ---
-This lead was submitted via propertypreservationistinsurance.com
+This lead was submitted via propertypreservationinsurance.com
 `;
 }
 
@@ -77,13 +77,13 @@ function buildHtmlBody(data: LeadEmailData): string {
   <div style="max-width:640px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(32,38,27,0.1)">
     <div style="background:linear-gradient(135deg,#3c4a2a,#55663d);padding:24px 32px">
       <h1 style="color:white;margin:0 0 4px;font-size:22px">New Lead: ${escapeHtml(data.leadType)}</h1>
-      <p style="color:rgba(255,255,255,0.82);margin:0;font-size:13px">Source: propertypreservationistinsurance.com &nbsp;|&nbsp; ${now}</p>
+      <p style="color:rgba(255,255,255,0.82);margin:0;font-size:13px">Source: propertypreservationinsurance.com &nbsp;|&nbsp; ${now}</p>
     </div>
     <div style="padding:24px 32px">
       <table style="width:100%;border-collapse:collapse;font-size:14px">${body}</table>
     </div>
     <div style="background:#f7f5ee;padding:16px 32px;font-size:12px;color:#7b8271;border-top:1px solid #eae5d6">
-      Submitted via propertypreservationistinsurance.com &nbsp;|&nbsp; Tag: [propertypreservationistinsurance]
+      Submitted via propertypreservationinsurance.com &nbsp;|&nbsp; Tag: [propertypreservationinsurance]
     </div>
   </div>
 </body>
@@ -130,14 +130,14 @@ export async function sendContactEmail(data: {
     return;
   }
 
-  const subject = `[propertypreservationistinsurance] Contact: ${data.firstName} ${data.lastName}`;
+  const subject = `[propertypreservationinsurance] Contact: ${data.firstName} ${data.lastName}`;
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>Contact Form Submission</title></head>
 <body style="font-family:Arial,sans-serif;background:#f7f5ee;margin:0;padding:20px">
   <div style="max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(32,38,27,0.1)">
     <div style="background:linear-gradient(135deg,#3c4a2a,#55663d);padding:24px 32px">
       <h1 style="color:white;margin:0;font-size:22px">Contact Form Submission</h1>
-      <p style="color:rgba(255,255,255,0.82);margin:4px 0 0;font-size:13px">Source: propertypreservationistinsurance.com/contact</p>
+      <p style="color:rgba(255,255,255,0.82);margin:4px 0 0;font-size:13px">Source: propertypreservationinsurance.com/contact</p>
     </div>
     <div style="padding:24px 32px">
       <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -160,7 +160,7 @@ export async function sendContactEmail(data: {
       sender: SENDER,
       reply_to: data.email,
       subject,
-      text_body: `Contact Form Submission\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nState: ${data.state || ""}\n\nMessage:\n${data.message}\n\n---\nSubmitted via propertypreservationistinsurance.com/contact`,
+      text_body: `Contact Form Submission\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nState: ${data.state || ""}\n\nMessage:\n${data.message}\n\n---\nSubmitted via propertypreservationinsurance.com/contact`,
       html_body: html,
     }),
   });

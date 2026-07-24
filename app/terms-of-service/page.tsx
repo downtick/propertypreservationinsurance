@@ -6,8 +6,8 @@ import AccessibilityToggle from "@/components/AccessibilityToggle";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms of service for propertypreservationistinsurance.com.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/terms-of-service/" },
+  description: "Terms of service for propertypreservationinsurance.com.",
+  alternates: { canonical: "https://propertypreservationinsurance.com/terms-of-service/" },
 };
 
 export default function TermsOfService() {
@@ -23,7 +23,7 @@ export default function TermsOfService() {
           <div className="prose-warm">
             <p>
               These Terms of Service (&ldquo;Terms&rdquo;) govern your use of
-              propertypreservationistinsurance.com (the &ldquo;Site&rdquo;), operated by Property
+              propertypreservationinsurance.com (the &ldquo;Site&rdquo;), operated by Property
               Preservationist Insurance (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By
               accessing or using the Site, you agree to these Terms. If you do not agree, do not use the
               Site.
@@ -135,7 +135,7 @@ export default function TermsOfService() {
             <p>
               Property Preservationist Insurance
               <br />
-              Email: <a href="mailto:legal@propertypreservationistinsurance.com">legal@propertypreservationistinsurance.com</a>
+              Email: <a href="mailto:legal@propertypreservationinsurance.com">legal@propertypreservationinsurance.com</a>
               <br />
               Or use our <Link href="/contact">contact form</Link>.
             </p>

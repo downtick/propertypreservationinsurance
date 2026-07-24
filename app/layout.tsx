@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://propertypreservationistinsurance.com"),
+  metadataBase: new URL("https://propertypreservationinsurance.com"),
   title: {
     default: "Property Preservationist Insurance | GL, E&O & Cyber for Vacant-Property Pros",
     template: "%s | Property Preservationist Insurance",
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     title: "Property Preservationist Insurance | Coverage for Vacant-Property Pros",
     description:
       "General liability, professional liability (E&O), and cyber liability for property preservationists and mortgage field inspectors working on vacant and bank-owned properties. Request a fast quote.",
-    url: "https://propertypreservationistinsurance.com/",
+    url: "https://propertypreservationinsurance.com/",
   },
   twitter: {
     card: "summary_large_image",
     title: "Property Preservationist Insurance",
     description: "Coverage built for property preservationists and mortgage field inspectors on vacant properties.",
   },
-  alternates: { canonical: "https://propertypreservationistinsurance.com/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
 };
 
@@ -40,8 +40,8 @@ const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Property Preservationist Insurance",
-  url: "https://propertypreservationistinsurance.com/",
-  logo: "https://propertypreservationistinsurance.com/icon.svg",
+  url: "https://propertypreservationinsurance.com/",
+  logo: "https://propertypreservationinsurance.com/icon.svg",
   description:
     "Informational and referral service that connects property preservationists and mortgage field inspectors with insurance professionals. General liability, professional liability, and cyber liability coverage for work on vacant and bank-owned properties.",
   areaServed: "US",

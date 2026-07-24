@@ -6,8 +6,8 @@ import AccessibilityToggle from "@/components/AccessibilityToggle";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy policy for propertypreservationistinsurance.com — how we collect, use, share, and protect your personal information.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/privacy-policy/" },
+  description: "Privacy policy for propertypreservationinsurance.com — how we collect, use, share, and protect your personal information.",
+  alternates: { canonical: "https://propertypreservationinsurance.com/privacy-policy/" },
 };
 
 export default function PrivacyPolicy() {
@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
           <div className="prose-warm">
             <p>
               <strong>Property Preservationist Insurance</strong> (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
-              &ldquo;our&rdquo;) operates propertypreservationistinsurance.com (the &ldquo;Site&rdquo;).
+              &ldquo;our&rdquo;) operates propertypreservationinsurance.com (the &ldquo;Site&rdquo;).
               The Site is a lead-generation and referral service that connects property preservationists
               and mortgage field inspectors seeking insurance with licensed insurance professionals.{" "}
               <strong>This Site is not an insurance agency.</strong> By using the Site or submitting a
@@ -68,7 +68,7 @@ export default function PrivacyPolicy() {
             <h2>4. Consent to Be Contacted (TCPA — Calls &amp; Text Messages)</h2>
             <p>
               By submitting a form with your phone number and checking the consent box, you give your
-              prior express written consent for propertypreservationistinsurance.com, its partners, and
+              prior express written consent for propertypreservationinsurance.com, its partners, and
               the insurance carriers or agents we connect you with to contact you at the number provided
               — including by automatic telephone dialing system, prerecorded or artificial voice, and text
               message (SMS) — for marketing and servicing of your request.{" "}
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
               Colorado, and Connecticut), you may have the right to access, correct, delete, or restrict
               use of your information, and to opt out of certain sharing. We do not discriminate against
               you for exercising these rights. To exercise any right, email{" "}
-              <a href="mailto:privacy@propertypreservationistinsurance.com">privacy@propertypreservationistinsurance.com</a> with
+              <a href="mailto:privacy@propertypreservationinsurance.com">privacy@propertypreservationinsurance.com</a> with
               &ldquo;Privacy Request&rdquo; in the subject line.
             </p>
 
@@ -124,7 +124,7 @@ export default function PrivacyPolicy() {
             <h2>12. Contact Us</h2>
             <p>
               Questions about this Policy? Email{" "}
-              <a href="mailto:privacy@propertypreservationistinsurance.com">privacy@propertypreservationistinsurance.com</a> or use
+              <a href="mailto:privacy@propertypreservationinsurance.com">privacy@propertypreservationinsurance.com</a> or use
               our <Link href="/contact">contact form</Link>.
             </p>
           </div>

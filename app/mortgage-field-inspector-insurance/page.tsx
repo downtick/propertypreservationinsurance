@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Mortgage Field Inspector Insurance",
   description:
     "Yes, insurance quotes are available for mortgage field inspectors. General liability, professional liability, and cyber liability for drive-by and interior occupancy and condition inspections.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/mortgage-field-inspector-insurance/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/mortgage-field-inspector-insurance/" },
 };
 
 export default function Page() {

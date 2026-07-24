@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Professional Liability (E&O) Insurance for Property Preservation",
   description:
     "Professional liability protects property preservationists and field inspectors against claims that a report, inspection, or job was performed incorrectly. Here's how it differs from general liability.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/professional-liability-insurance/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/professional-liability-insurance/" },
 };
 
 export default function Page() {

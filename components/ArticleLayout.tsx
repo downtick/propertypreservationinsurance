@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import AccessibilityToggle from "@/components/AccessibilityToggle";
 import DisclaimerNotice from "@/components/DisclaimerNotice";
 
-const SITE = "https://propertypreservationistinsurance.com";
+const SITE = "https://propertypreservationinsurance.com";
 const PUBLISHED = "2026-07-23";
 
 /**

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "About Property Preservationist Insurance",
   description:
     "Property Preservationist Insurance connects property preservationists and mortgage field inspectors with insurance professionals — helping you find and request the coverage your work calls for.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/about/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/about/" },
 };
 
 export default function AboutPage() {

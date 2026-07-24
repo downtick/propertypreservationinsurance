@@ -7,7 +7,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Questions about property preservation or mortgage field inspector insurance? Get in touch and we'll help point you in the right direction.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/contact/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/contact/" },
 };
 
 export default function ContactPage() {

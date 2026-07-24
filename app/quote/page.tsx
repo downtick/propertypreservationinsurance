@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Get a Quote",
   description:
     "Request a property preservation or mortgage field inspection insurance quote. General liability, professional liability (E&O), and cyber liability for work on vacant and bank-owned properties.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/quote/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/quote/" },
 };
 
 export default function QuotePage() {

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE = "https://propertypreservationistinsurance.com";
+const SITE = "https://propertypreservationinsurance.com";
 
 const CORE = [
   "",

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Property Preservation Insurance",
   description:
     "Yes, insurance quotes are available for property preservationists. General liability, professional liability, and cyber liability for winterizing, lawn maintenance, handyman work, and trash-outs on vacant properties.",
-  alternates: { canonical: "https://propertypreservationistinsurance.com/property-preservation-insurance/" },
+  alternates: { canonical: "https://propertypreservationinsurance.com/property-preservation-insurance/" },
 };
 
 export default function Page() {

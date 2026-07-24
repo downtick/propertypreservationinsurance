@@ -1,4 +1,4 @@
-# propertypreservationistinsurance.com
+# propertypreservationinsurance.com
 
 Next.js 16 lead-generation site for property preservation and mortgage field
 inspector insurance.
