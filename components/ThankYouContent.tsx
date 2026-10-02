@@ -19,6 +19,32 @@ export default function ThankYouContent() {
             </p>
           </div>
 
+          {/* Jobber — field-service software affiliate */}
+          <div style={{ background: "#fff", borderRadius: "1rem", padding: "1.75rem 2rem", boxShadow: "0 4px 24px rgba(32,38,27,0.08)", marginBottom: "2rem", border: "1px solid #ddd7c4", display: "flex", flexWrap: "wrap", gap: "1.5rem", alignItems: "center" }}>
+            <a href="https://go.getjobber.com/contractor-listings" target="_blank" rel="noopener noreferrer sponsored" style={{ flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/affiliates/jobber-TrustedBy200k_250x250.jpg" alt="Jobber - trusted by 200,000+ home service pros" width={130} height={130} loading="lazy" style={{ borderRadius: "0.75rem", display: "block" }} />
+            </a>
+            <div style={{ flex: 1, minWidth: 240 }}>
+              <div style={{ color: "#9c7324", fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                Run your business
+              </div>
+              <h3 style={{ fontFamily: "'Oswald', sans-serif", color: "#3c4a2a", fontSize: "1.35rem", marginBottom: "0.4rem" }}>
+                Spend less time on paperwork
+              </h3>
+              <p style={{ color: "#3d4536", fontSize: "0.95rem", margin: "0 0 1rem" }}>
+                Jobber helps preservation crews and field inspectors schedule work orders, send
+                quotes and invoices, and get paid faster, all from your phone.
+              </p>
+              <a href="https://go.getjobber.com/contractor-listings" target="_blank" rel="noopener noreferrer sponsored" className="btn-amber">
+                Try Jobber →
+              </a>
+              <p style={{ color: "#a3ab98", fontSize: "0.72rem", marginTop: "0.6rem", marginBottom: 0 }}>
+                We may earn a referral fee if you sign up through this link. Your price does not change.
+              </p>
+            </div>
+          </div>
+
           {/* Life insurance affiliate */}
           <div style={{
             background: "linear-gradient(135deg, #20261b, #3c4a2a)", borderRadius: "1rem",
