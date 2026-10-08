@@ -49,6 +49,9 @@ export default function Footer() {
                 {label}
               </Link>
             ))}
+            <a href="https://treetrimmerinsurance.com/" style={{ display: "block", color: "rgba(255,255,255,0.68)", textDecoration: "none", fontSize: "0.9rem", marginBottom: "0.5rem" }}>
+              Tree Trimmer Insurance
+            </a>
           </div>
 
           <div>
