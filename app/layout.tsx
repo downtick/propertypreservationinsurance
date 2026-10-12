@@ -52,7 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="en" className="h-full scroll-smooth">
+    <html suppressHydrationWarning lang="en" className="h-full scroll-smooth">
       <head>
         <script dangerouslySetInnerHTML={{ __html: A11Y_BOOT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
