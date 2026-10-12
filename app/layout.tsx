@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { A11Y_BOOT } from "@/components/a11yBoot";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://propertypreservationinsurance.com"),
@@ -53,14 +54,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className="h-full scroll-smooth">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: A11Y_BOOT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Restore saved accessibility preferences before paint to avoid a flash */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement;if(localStorage.getItem('a11y-contrast')==='1')d.classList.add('a11y-contrast');var fs=localStorage.getItem('a11y-fs');if(fs)d.style.setProperty('--fs',fs);}catch(e){}})();`,
-          }}
-        />
         {gaId && (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
