@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AccessibilityToggle from "@/components/AccessibilityToggle";
@@ -16,6 +17,28 @@ export default function ThankYouContent() {
             <p style={{ color: "#3d4536", fontSize: "1.1rem", maxWidth: "580px", margin: "0 auto" }}>
               We&apos;ve received your information and someone will be in touch soon to help with your
               property preservation or field inspection insurance quote.
+            </p>
+          </div>
+
+          {/* Trade Pro Directory — same-owner resource page */}
+          <div style={{ background: "#fff", borderRadius: "1rem", padding: "1.75rem 2rem", boxShadow: "0 4px 24px rgba(32,38,27,0.08)", marginBottom: "2rem", border: "1px solid #ddd7c4" }}>
+            <div style={{ color: "#9c7324", fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+              Get found by customers
+            </div>
+            <h3 style={{ fontFamily: "'Oswald', sans-serif", color: "#3c4a2a", fontSize: "1.35rem", marginBottom: "0.4rem" }}>
+              List your business on Trade Pro Directory
+            </h3>
+            <p style={{ color: "#3d4536", fontSize: "0.95rem", margin: "0 0 1rem" }}>
+              Customers search the directory by trade and city and send quote requests straight to
+              your business. Property preservation is one of its trades, and there&apos;s a free
+              listing to start.
+            </p>
+            <Link href="/trade-pro-directory" className="btn-amber">
+              See the plans →
+            </Link>
+            <p style={{ color: "#a3ab98", fontSize: "0.72rem", marginTop: "0.6rem", marginBottom: 0 }}>
+              A separate directory, not part of your insurance. Trade Pro Directory and
+              PropertyPreservationInsurance.com have the same owner.
             </p>
           </div>
 

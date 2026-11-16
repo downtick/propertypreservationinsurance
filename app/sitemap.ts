@@ -10,6 +10,7 @@ const CORE = [
   "general-liability-insurance",
   "professional-liability-insurance",
   "cyber-liability-insurance",
+  "trade-pro-directory",
   "about",
   "contact",
   "privacy-policy",

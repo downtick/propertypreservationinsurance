@@ -42,6 +42,7 @@ export default function Footer() {
             {[
               { href: "/property-preservation-insurance", label: "Property Preservationists" },
               { href: "/mortgage-field-inspector-insurance", label: "Mortgage Field Inspectors" },
+              { href: "/trade-pro-directory", label: "Trade Pro Directory" },
               { href: "/about", label: "About" },
               { href: "/contact", label: "Contact Us" },
             ].map(({ href, label }) => (
