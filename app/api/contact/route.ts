@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ContactSchema } from "@/lib/schemas";
 import { sendContactEmail } from "@/lib/smtp2go";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { honeypotFilled, readJson } from "@/lib/requestGuard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,11 +51,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  const body = await readJson(request);
+  if (!body) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+
+  // Honeypot — pretend it worked so bots learn nothing.
+  if (honeypotFilled(body, "company_website")) {
+    return NextResponse.json({ success: true });
   }
 
   const parsed = ContactSchema.safeParse(body);
@@ -65,12 +67,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Honeypot — silently accept but drop bots.
-  if (parsed.data.company_website) {
-    return NextResponse.json({ success: true });
+  try {
+    await sendContactEmail(parsed.data);
+  } catch (err) {
+    console.error("Contact email failed:", err);
+    return NextResponse.json(
+      { error: "We couldn't send your message. Please try again in a few minutes." },
+      { status: 502 }
+    );
   }
-
-  await sendContactEmail(parsed.data).catch((err) => console.error("Contact email error:", err));
 
   return NextResponse.json({ success: true });
 }

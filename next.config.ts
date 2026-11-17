@@ -8,14 +8,16 @@ const cspHeader = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: https://images.unsplash.com https:",
-  "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.smtp2go.com",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
   "frame-src 'self'",
+  "object-src 'none'",
   "form-action 'self'",
   "base-uri 'self'",
   "frame-ancestors 'none'",
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {

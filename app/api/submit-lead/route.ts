@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { QuoteSchema } from "@/lib/schemas";
 import { sendLeadEmail } from "@/lib/smtp2go";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { honeypotFilled, readJson } from "@/lib/requestGuard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,11 +55,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  const body = await readJson(request);
+  if (!body) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+
+  // Honeypot — pretend it worked so bots learn nothing.
+  if (honeypotFilled(body, "company_website")) {
+    return NextResponse.json({ success: true, redirect: "/thank-you" });
   }
 
   const parsed = QuoteSchema.safeParse(body);
@@ -70,11 +72,6 @@ export async function POST(request: NextRequest) {
   }
 
   const d = parsed.data;
-
-  // Honeypot — silently accept but drop bots.
-  if (d.company_website) {
-    return NextResponse.json({ success: true, redirect: "/thank-you" });
-  }
 
   const coverage = [
     d.wantsGL ? "General Liability" : null,
@@ -133,7 +130,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     console.error("Property preservation lead email failed", err);
-    return NextResponse.json({ error: "We couldn't submit your request. Please try again." }, { status: 500 });
+    return NextResponse.json({ error: "We couldn't submit your request. Please try again in a few minutes." }, { status: 502 });
   }
 
   return NextResponse.json({ success: true, redirect: "/thank-you" });

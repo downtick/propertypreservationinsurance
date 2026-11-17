@@ -1,8 +1,10 @@
 // SMTP2GO delivery for propertypreservationinsurance.com.
 // Every lead / contact submission is emailed to leads@runquotes.com from
 // propertypreservation@runquotes.com (a verified SMTP2GO sender).
+// Every send fails loudly (throws) so the route can answer 5xx: a missing key,
+// a non-OK HTTP status, or SMTP2GO reporting a failed recipient is a lost lead.
+import { headerSafe } from "./requestGuard";
 const SMTP2GO_API_URL = "https://api.smtp2go.com/v3/email/send";
-const SMTP2GO_API_KEY = process.env.SMTP2GO_API_KEY!;
 const RECIPIENT = "leads@runquotes.com";
 const SENDER = process.env.SMTP2GO_SENDER_EMAIL || "propertypreservation@runquotes.com";
 
@@ -29,10 +31,10 @@ function escapeHtml(s: string): string {
 }
 
 function buildSubject(data: LeadEmailData): string {
-  if (data.subject) return data.subject;
+  if (data.subject) return headerSafe(data.subject);
   const state = String(data.fields.State || "");
   const name = `${data.fields["First Name"] || ""} ${data.fields["Last Name"] || ""}`.trim();
-  return ["PropertyPreservationistInsurance", state, name].filter(Boolean).join(" - ");
+  return headerSafe(["PropertyPreservationistInsurance", state, name].filter(Boolean).join(" - "));
 }
 
 function rows(data: LeadEmailData) {
@@ -90,31 +92,29 @@ function buildHtmlBody(data: LeadEmailData): string {
 </html>`;
 }
 
-export async function sendLeadEmail(data: LeadEmailData): Promise<void> {
-  if (!SMTP2GO_API_KEY) {
-    console.error("SMTP2GO_API_KEY is not configured — lead not emailed");
-    return;
-  }
-
+async function send(payload: Record<string, unknown>): Promise<void> {
+  const apiKey = process.env.SMTP2GO_API_KEY;
+  if (!apiKey) throw new Error("SMTP2GO_API_KEY is not configured; email not sent");
   const response = await fetch(SMTP2GO_API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      api_key: SMTP2GO_API_KEY,
-      to: [RECIPIENT],
-      sender: SENDER,
-      ...(data.replyTo ? { reply_to: data.replyTo } : {}),
-      subject: buildSubject(data),
-      text_body: buildTextBody(data),
-      html_body: buildHtmlBody(data),
-      ...(data.attachments && data.attachments.length ? { attachments: data.attachments } : {}),
-    }),
+    body: JSON.stringify({ api_key: apiKey, to: [RECIPIENT], sender: SENDER, ...payload }),
   });
-
-  if (!response.ok) {
-    console.error("SMTP2Go error:", await response.text());
+  const body = await response.json().catch(() => null);
+  if (!response.ok || !body?.data || body.data.failed > 0 || !(body.data.succeeded > 0)) {
+    console.error("SMTP2GO error:", response.status, JSON.stringify(body?.data ?? body));
     throw new Error("Email send failed");
   }
+}
+
+export async function sendLeadEmail(data: LeadEmailData): Promise<void> {
+  await send({
+    ...(data.replyTo ? { reply_to: data.replyTo } : {}),
+    subject: buildSubject(data),
+    text_body: buildTextBody(data),
+    html_body: buildHtmlBody(data),
+    ...(data.attachments && data.attachments.length ? { attachments: data.attachments } : {}),
+  });
 }
 
 export async function sendContactEmail(data: {
@@ -125,12 +125,7 @@ export async function sendContactEmail(data: {
   state?: string;
   message: string;
 }): Promise<void> {
-  if (!SMTP2GO_API_KEY) {
-    console.error("SMTP2GO_API_KEY is not configured");
-    return;
-  }
-
-  const subject = `[propertypreservationinsurance] Contact: ${data.firstName} ${data.lastName}`;
+  const subject = headerSafe(`[propertypreservationinsurance] Contact: ${data.firstName} ${data.lastName}`);
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>Contact Form Submission</title></head>
 <body style="font-family:Arial,sans-serif;background:#f7f5ee;margin:0;padding:20px">
@@ -151,17 +146,10 @@ export async function sendContactEmail(data: {
   </div>
 </body></html>`;
 
-  await fetch(SMTP2GO_API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      api_key: SMTP2GO_API_KEY,
-      to: [RECIPIENT],
-      sender: SENDER,
-      reply_to: data.email,
-      subject,
-      text_body: `Contact Form Submission\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nState: ${data.state || ""}\n\nMessage:\n${data.message}\n\n---\nSubmitted via propertypreservationinsurance.com/contact`,
-      html_body: html,
-    }),
+  await send({
+    reply_to: data.email,
+    subject,
+    text_body: `Contact Form Submission\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nState: ${data.state || ""}\n\nMessage:\n${data.message}\n\n---\nSubmitted via propertypreservationinsurance.com/contact`,
+    html_body: html,
   });
 }
