@@ -3,13 +3,15 @@ import ArticleLayout from "@/components/ArticleLayout";
 
 const SITE = "https://propertypreservationinsurance.com";
 const PATH = "/trade-pro-directory/";
-const TRADE_PRO_URL =
-  "https://www.tradeprodirectory.com/?utm_source=propertypreservationinsurance&utm_medium=referral&utm_campaign=resource";
+const UTM = "utm_source=propertypreservationinsurance&utm_medium=referral&utm_campaign=resource";
+const TRADE_PRO_URL = `https://www.tradeprodirectory.com/?${UTM}`;
+const JOIN_URL = `https://www.tradeprodirectory.com/join?${UTM}`;
+const CLAIM_URL = `https://www.tradeprodirectory.com/claim-your-listing?${UTM}`;
 
 export const metadata: Metadata = {
   title: "Trade Pro Directory Listing for Property Preservation Businesses",
   description:
-    "List your property preservation business on Trade Pro Directory. Customers search by trade and city and send quote requests to your email. Free, Member and Crew plans.",
+    "List your property preservation business on Trade Pro Directory. Member and Crew listings show your phone number and website and get quote requests by email.",
   alternates: { canonical: `${SITE}${PATH}` },
 };
 
@@ -17,12 +19,14 @@ const PLANS = [
   {
     name: "Free",
     price: "$0",
-    items: ["A listing under 1 trade", "Your phone and website shown"],
+    items: ["Business name, trade and city in 1 trade", "No phone number, website or quote requests"],
   },
   {
     name: "Member",
     price: "$149/yr",
     items: [
+      "Your phone number and website shown",
+      "Quote requests sent to your email",
       "List under up to 20 trades",
       "Ranked above free listings",
       "17 member perks",
@@ -45,7 +49,7 @@ const PLANS = [
 const FAQ = [
   {
     q: "How do customers reach me through Trade Pro Directory?",
-    a: "Customers search by trade and city, find your listing, and send a quote request that goes to your business email.",
+    a: "Customers search by trade and city and find your listing. On Member and Crew listings, they see your phone number and website and can send a quote request that goes to your business email.",
   },
   {
     q: "Is Trade Pro Directory part of my insurance?",
@@ -57,7 +61,7 @@ const FAQ = [
   },
   {
     q: "My business is already listed. What do I do?",
-    a: "If your business already appears in the directory, you can claim the existing listing instead of creating a new one.",
+    a: "If your business already appears in the directory, claim the existing listing for free instead of creating a new one, then upgrade to Member or Crew to show your phone number and website and receive quote requests.",
   },
 ];
 
@@ -71,9 +75,9 @@ const faqLd = {
   })),
 };
 
-function ListCta({ label }: { label: string }) {
+function ListCta({ label, href = JOIN_URL }: { label: string; href?: string }) {
   return (
-    <a href={TRADE_PRO_URL} target="_blank" rel="noopener noreferrer" className="btn-amber">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="btn-amber">
       {label} →
     </a>
   );
@@ -167,8 +171,22 @@ export default function TradeProDirectoryPage() {
         }}
       >
         <h2 style={{ marginTop: 0 }}>List your preservation business</h2>
-        <p>Start with a free listing, or pick a plan that covers every trade you work in.</p>
-        <ListCta label="Visit Trade Pro Directory" />
+        <p>
+          Choose Member or Crew so customers see your phone number and website and can send you quote
+          requests. Already listed? Claim your listing first, then upgrade.
+        </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
+          <ListCta label="See plans and join" />
+          <a
+            href={CLAIM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-amber"
+            style={{ background: "#fff", color: "#3c4a2a", border: "1px solid #ddd7c4" }}
+          >
+            Claim your listing →
+          </a>
+        </div>
         <p style={{ fontSize: "0.8rem", color: "#7b8271", marginTop: "0.75rem", marginBottom: 0 }}>
           Opens in a new tab. Plan details may change; check the Trade Pro Directory site for current
           terms.

@@ -30,8 +30,8 @@ export default function ThankYouContent() {
             </h3>
             <p style={{ color: "#3d4536", fontSize: "0.95rem", margin: "0 0 1rem" }}>
               Customers search the directory by trade and city and send quote requests straight to
-              your business. Property preservation is one of its trades, and there&apos;s a free
-              listing to start.
+              Member and Crew listings. Property preservation is one of its trades, with flat
+              yearly dues and never a fee per lead.
             </p>
             <Link href="/trade-pro-directory" className="btn-amber">
               See the plans →
