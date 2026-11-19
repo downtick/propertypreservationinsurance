@@ -37,8 +37,8 @@ export default function ThankYouContent() {
               See the plans →
             </Link>
             <p style={{ color: "#a3ab98", fontSize: "0.72rem", marginTop: "0.6rem", marginBottom: 0 }}>
-              A separate directory, not part of your insurance. Trade Pro Directory and
-              PropertyPreservationInsurance.com have the same owner.
+              A separate directory, not part of your insurance. Trade Pro Directory is a
+              partner of PropertyPreservationInsurance.com.
             </p>
           </div>
 

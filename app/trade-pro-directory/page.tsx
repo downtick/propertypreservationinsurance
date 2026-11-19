@@ -99,7 +99,7 @@ export default function TradeProDirectoryPage() {
       >
         <strong>Please note:</strong> Trade Pro Directory is separate from your insurance and is not
         part of any policy. Joining it does not change, add to, or replace your coverage. Trade Pro
-        Directory and PropertyPreservationInsurance.com have the same owner.
+        Directory is a partner of PropertyPreservationInsurance.com.
       </p>
 
       <h2>What is Trade Pro Directory?</h2>
